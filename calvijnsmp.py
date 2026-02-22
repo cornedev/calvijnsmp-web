@@ -48,6 +48,9 @@ def check_server():
 def home():
     status = check_server()
     return render_template("calvijnsmp.html", status=status)
+@calvijnsmpsite.route("/ping")
+def ping():
+    return "ok", 200
 
 if __name__ == "__main__":
     calvijnsmpsite.run(host="0.0.0.0", port=5000, debug=False)
