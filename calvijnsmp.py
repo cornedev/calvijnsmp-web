@@ -4,31 +4,12 @@ import socket
 
 calvijnsmpsite = Flask(__name__)
 
-serveradress = "goes.calvijnsmp.nl"
-serverport = 48890
+serveradress = "smp.calvijnsmp.nl"
+serverport = 38224
 def check_server():
     try:
         server = JavaServer.lookup(f"{serveradress}:{serverport}")
-        serverstatus = server.status(timeout=3)
-
-        servermotd = ""
-        if isinstance(serverstatus.description, dict):
-            servermotd = serverstatus.description.get("text", "")
-        else:
-            servermotd = str(serverstatus.description)
-
-        servermotdlower = servermotd.lower()
-
-        offlineserver = (
-            "offline" in servermotdlower
-            or "connect to" in servermotdlower
-            or "aternos.org" in servermotdlower
-            or serverstatus.players.max == 0
-            or serverstatus.version.protocol <= 0
-        )
-
-        if offlineserver:
-            return {"online": False}
+        serverstatus = server.status()
 
         playernames = []
         if serverstatus.players.sample:
@@ -40,17 +21,15 @@ def check_server():
             "players_max": serverstatus.players.max,
             "player_names": playernames,
         }
-    
-    except:
+
+    except Exception as e:
+        print("Error:", e)
         return {"online": False}
 
 @calvijnsmpsite.route("/")
 def home():
     status = check_server()
     return render_template("calvijnsmp.html", status=status)
-@calvijnsmpsite.route("/ping")
-def ping():
-    return "ok", 200
 
 if __name__ == "__main__":
     calvijnsmpsite.run(host="0.0.0.0", port=5000, debug=False)
