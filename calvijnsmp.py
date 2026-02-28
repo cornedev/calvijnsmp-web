@@ -4,8 +4,8 @@ import socket
 
 calvijnsmpsite = Flask(__name__)
 
-serveradress = "private"
-serverport = private
+serveradress = "smp.calvijnsmp.nl"
+serverport = 38224
 def check_server():
     try:
         server = JavaServer.lookup(f"{serveradress}:{serverport}")
@@ -30,6 +30,10 @@ def check_server():
 def home():
     status = check_server()
     return render_template("calvijnsmp.html", status=status)
+
+@calvijnsmpsite.route("/rules")
+def rules():
+    return render_template("rules.html")
 
 if __name__ == "__main__":
     calvijnsmpsite.run(host="0.0.0.0", port=5000, debug=False)
