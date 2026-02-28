@@ -4,8 +4,8 @@ import socket
 
 calvijnsmpsite = Flask(__name__)
 
-serveradress = "smp.calvijnsmp.nl"
-serverport = 38224
+serveradress = "private"
+serverport = private
 def check_server():
     try:
         server = JavaServer.lookup(f"{serveradress}:{serverport}")
