@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>calvijnsmp regels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+    <style>
+        @font-face {
+            font-family: 'minecraftfont';
+            src: url('{{ url_for("static", filename="minecraft.ttf") }}') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+            font-family: 'minecraftfont', Arial, sans-serif;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+
+            background: url('{{ url_for("static", filename="regelspc.png") }}') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .logo {
+            width: 400px;
+            filter: 
+                drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.6))
+                drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.8));
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rules {
+            margin-top: 20px;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            display: inline-block;
+            max-width: none;
+
+            text-shadow: 
+                0px 0px 5px rgba(0, 0, 0, 1),
+                0px 0px 10px rgba(0, 0, 0, 0.9),
+                2px 2px 15px rgba(0, 0, 0, 0.8),
+                0px 0px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .rules ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rules li {
+            margin: 6px 0;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .rules li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: white;
+            display: none;
+        }
+
+        .ban-note {
+            margin-top: 15px;
+            color: #e74c3c;
+            font-size: 35px;
+        }
+
+        .bottom-link {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            color: rgb(236, 175, 31);
+            font-size: 35px;
+            text-decoration: underline;
+
+            text-shadow: 
+                0px 0px 5px rgba(0, 0, 0, 1),
+                0px 0px 10px rgba(0, 0, 0, 0.9);
+
+            transition: opacity 0.2s ease;
+        }
+
+        .bottom-link:hover {
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 30px;
+                background: url('{{ url_for("static", filename="regelsmobile.png") }}') no-repeat center center fixed;
+                background-size: cover;
+            }
+
+            .logo {
+                width: 80vw;
+                max-width: 500px;
+            }
+
+            .rules {
+                font-size: 18px;
+                text-align: center;
+                width: 90vw;
+                max-width: none;
+            }
+
+            .rules li {
+                padding-left: 0;
+            }
+
+            .rules li::before {
+                display: none;
+            }
+
+            .ban-note {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/" class="bottom-link">
+       ga terug
+    </a>
+    <div class="content">
+    <img class="logo" src="{{ url_for('static', filename='calvijnsmpregels.png') }}" draggable="false" alt="Icon">
+
+    <div class="rules">
+        <ul>
+            <li>geen crystals of respawn anchors voor pvp</li>
+            <li>geen cheats</li>
+            <li>geen elytra voor pvp</li>
+            <li>geen minecarts voor pvp</li>
+            <li>niet gerespawnede mensen aanvallen</li>
+            <li>niet zomaar mensen aanvallen of killen (alleen als het afgesproken is)</li>
+            <li>niet griefen, niet stelen</li>
+            <li>niet alleen maar grinden, ook bouwen</li>
+            <li>niet expres slechte builds maken</li>
+            <li>niet vloeken (alles)</li>
+            <li>niet andermans villagers gebruiken zonder toestemming</li>
+            <li>niet andermans builds kapot maken</li>
+            <li>niet de hele tijd bij de base van iemand anders komen zonder toestemming</li>
+        </ul>
+
+        <div class="ban-note">
+            het overtreden van de regels leidt tot een ban
+        </div>
+    </div>
+</div>
+</body>
+</html>

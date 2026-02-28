@@ -22,6 +22,9 @@
             padding-top: 50px;
             font-family: 'minecraftfont', Arial, sans-serif;
             overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
 
             background: url('{{ url_for("static", filename="pc.png") }}') no-repeat center center fixed;
             background-size: cover;
@@ -103,6 +106,27 @@
             transform: scale(1.1);
         }
 
+        .bottom-link {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            color: rgb(236, 175, 31);
+            font-size: 35px;
+            text-decoration: underline;
+
+            text-shadow: 
+                0px 0px 5px rgba(0, 0, 0, 1),
+                0px 0px 10px rgba(0, 0, 0, 0.9);
+
+            transition: opacity 0.2s ease;
+        }
+
+        .bottom-link:hover {
+            opacity: 0.7;
+        }
+        
         @media (max-width: 768px) {
             body {
                 padding-top: 30px;
@@ -131,9 +155,13 @@
         }
     </style>
 </head>
+
 <body>
+    <a href="/rules" class="bottom-link">
+        calvijnsmp regels
+    </a>
     <a href="https://github.com/cornedev/calvijnsmp-web" 
-        target="_blank" 
+        target="_blank"
         class="github-button"
         aria-label="GitHub Repository">
 
@@ -153,24 +181,24 @@
     </a>
 
     <div class="content">
-        <img class="logo" src="{{ url_for('static', filename='calvijnsmp.png') }}" alt="Icon">
+        <img class="logo" src="{{ url_for('static', filename='calvijnsmp.png') }}" draggable="false" alt="Icon">
 
         <div class="status-box">
             {% if status.online %}
-                <img class="status-image" src="{{ url_for('static', filename='online.png') }}" alt="Server Online">
-                <div class="players">Players: {{ status.players_online }} / {{ status.players_max }}</div>
+                <img class="status-image" src="{{ url_for('static', filename='online.png') }}" draggable="false" alt="Server Online">
+                <div class="players">spelers: {{ status.players_online }} / {{ status.players_max }}</div>
 
                 {% if status.player_names %}
                     <div class="player-names">
-                        Names: {{ status.player_names | join(', ') }}
+                        namen: {{ status.player_names | join(', ') }}
                     </div>
                 {% else %}
                     <div class="player-names">
-                        Names: empty
+                        namen: empty
                     </div>
                 {% endif %}
             {% else %}
-                <img class="status-image" src="{{ url_for('static', filename='offline.png') }}" alt="Server Offline">
+                <img class="status-image" src="{{ url_for('static', filename='offline.png') }}" draggable="false" alt="Server Offline">
             {% endif %}
         </div>
     </div>
