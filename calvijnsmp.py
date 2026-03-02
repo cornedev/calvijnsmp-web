@@ -39,5 +39,9 @@ def rules():
 def info():
     return render_template("info.html")
 
+@calvijnsmpsite.route('/ping')
+def ping():
+    return 'OK', 200
+
 if __name__ == "__main__":
     calvijnsmpsite.run(host="0.0.0.0", port=5000, debug=False)
