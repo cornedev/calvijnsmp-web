@@ -35,5 +35,9 @@ def home():
 def rules():
     return render_template("rules.html")
 
+@calvijnsmpsite.route("/info")
+def info():
+    return render_template("info.html")
+
 if __name__ == "__main__":
     calvijnsmpsite.run(host="0.0.0.0", port=5000, debug=False)
